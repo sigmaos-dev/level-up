@@ -1,25 +1,20 @@
-# LEVEL UP — installable offline web app
+LEVEL UP — UPDATE WITH DAYS CLEAN TRACKER
 
-## What's included
-- The existing LEVEL UP dashboard and progress tracking.
-- Installable PWA files for supported phones and desktop browsers.
-- Offline app-shell caching so the app can reopen without an internet connection.
-- Existing progress remains stored locally in the browser on each device.
+WHAT'S INCLUDED
+- Weekday and weekend routines.
+- Beginner-friendly movement/workout checklist.
+- Days Clean tracker on the dashboard and a detailed tracker page.
+- Optional start date, current day count, personal best, and 3/7/14/30/60/90-day milestones.
+- Tracker data is stored locally in this browser alongside your other app data. It is not sent to GitHub Pages or a server.
+- Existing progress storage key is preserved. The new tracker starts OFF until you choose a start date.
 
-## Important: cloud sync is not connected yet
-This package does **not** yet sync progress between devices. A real private cloud database and sign-in need to be configured first. Do not paste passwords, API secrets, or private keys into chat or publish them in this repository.
+UPDATE YOUR EXISTING GITHUB PAGES SITE
+1. Make an export backup from LEVEL UP Settings first (recommended).
+2. Extract this ZIP.
+3. Open your existing level-up GitHub repository.
+4. Upload the files from this folder to the repository root.
+5. Replace index.html, manifest.webmanifest, and service-worker.js; keep the icons folder.
+6. Commit the changes and wait 1–2 minutes. Refresh the published site. If an installed app still shows the old version, close it fully and reopen it. The service-worker cache is bumped to v3.
 
-## Publish it with GitHub Pages
-1. Sign in to GitHub and create a new repository named `level-up`.
-2. Upload the contents of this folder (not the ZIP itself) to the repository's root.
-3. In the repository, open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
-5. Wait for GitHub Pages to publish the site. Open the HTTPS address it gives you.
-
-## Install it
-- **Windows / Chrome or Edge:** open the published HTTPS site, then use the install icon in the address bar or browser menu → **Install app**.
-- **iPhone:** open the site in Safari → Share → **Add to Home Screen**.
-- **Android:** open the site in Chrome → menu → **Install app** or **Add to Home screen**.
-
-## Next stage: private cloud sync
-After the site is published, the next stage is to connect a private backend with user authentication and per-user data rules. The app should only sync the signed-in user's own data. If the chosen provider requires an adult-managed account or permission, follow its age and account rules rather than bypassing them.
+SYNC NOTE
+This remains a local/offline-friendly version; each device has its own data. Cross-device sync requires secure sign-in and a private database with per-user access rules. Follow the provider's age rules and involve a trusted adult if account setup requires it. Never share passwords or secret keys in chat.

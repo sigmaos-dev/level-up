@@ -20,13 +20,15 @@ button,input{font:inherit}button{cursor:pointer;color:inherit}.shell{max-width:1
 <div class="shell">
 <header class="top">
  <div class="brand"><div class="logo">⚡</div><div><h1>LEVEL UP</h1><small>Your daily growth companion</small></div></div>
- <div class="topright"><span class="pill" id="syncStatus">🔒 Saved on this device</span><span class="pill" id="todayPill"></span></div>
+ <div class="topright"><span class="pill">🔒 Saved on this device</span><span class="pill" id="todayPill"></span></div>
 </header>
 <div class="layout">
  <aside class="sidebar">
   <button class="nav active" data-tab="home"><span>⌂</span>Dashboard</button>
   <button class="nav" data-tab="habits"><span>✓</span>Habits</button>
   <button class="nav" data-tab="schedule"><span>◷</span>My schedule</button>
+  <button class="nav" data-tab="workouts"><span>💪</span>Workouts</button>
+  <button class="nav" data-tab="clean"><span>🌱</span>Days Clean</button>
   <button class="nav" data-tab="progress"><span>▦</span>Progress</button>
   <button class="nav" data-tab="rewards"><span>🏆</span>Achievements</button>
   <button class="nav" data-tab="settings"><span>⚙</span>Settings</button>
@@ -55,6 +57,7 @@ button,input{font:inherit}button{cursor:pointer;color:inherit}.shell{max-width:1
      <div class="card"><div class="cardhead"><h3>Level progress</h3><span class="tag" id="levelTag">Level 1</span></div><div class="levelrow"><span id="xpToNext">0 / 100 XP</span><b id="nextLevel">Next: Level 2</b></div><div class="progress"><div class="bar" id="levelBar" style="width:0%"></div></div><p class="hint">XP is for showing up and practicing healthy habits—not for being perfect.</p></div>
      <div class="card"><div class="cardhead"><h3>Today's encouragement 💙</h3></div><p class="quote" id="quote">You don't have to do everything perfectly. Just take the next helpful step.</p><div class="actions"><button class="btn" id="newQuote">Another reminder</button></div></div>
      <div class="card"><div class="cardhead"><h3>Next achievement</h3></div><div id="nextAchievement"></div></div>
+     <div class="card"><div class="cardhead"><h3>Days Clean 🌱</h3><span class="tag">Private</span></div><div id="cleanDashboard" class="quote" style="font-size:24px">Not started</div><p id="cleanDashboardNote" class="hint">An optional personal goal tracker. Start whenever you're ready.</p><button class="btn" data-go="clean">Open tracker</button></div>
     </div>
    </div>
   </section>
@@ -64,9 +67,28 @@ button,input{font:inherit}button{cursor:pointer;color:inherit}.shell{max-width:1
    <div class="card"><h3>Friendly reminder</h3><p class="hint">A missed checkbox is just information, not a failure. If you miss something, you can try again tomorrow. You don't need to punish yourself or earn rest.</p></div>
   </section>
   <section id="schedule" class="section">
-   <div class="welcome"><div><h2>My schedule ◷</h2><p>Your school-day plan. Adjust the flexible parts to fit real life.</p></div></div>
-   <div class="card"><div class="cardhead"><h3>Weekday schedule</h3><span class="tag">School day</span></div><div id="fullSchedule"></div></div>
-   <div class="card"><h3>Remember</h3><p class="hint">Your school day: 8:00 AM–2:50 PM. Pickup: 3:15 PM. Home: about 3:30 PM. If homework or activities take longer, move free time around rather than skipping meals, sleep, or breaks.</p></div>
+   <div class="welcome"><div><h2>My schedule ◷</h2><p>Two routines: one for school days and one for weekends.</p></div></div>
+   <div class="card"><div class="cardhead"><h3>Weekday routine</h3><span class="tag">Monday–Friday</span></div><div id="fullSchedule"></div></div>
+   <div class="card"><div class="cardhead"><h3>Weekend routine ☀️</h3><span class="tag">Saturday–Sunday</span></div><div id="weekendSchedule"></div></div>
+   <div class="card"><h3>Keep it flexible</h3><p class="hint">Move activities around for family plans, homework, or hobbies. Meals, sleep, breaks, and fun matter too. A routine is a guide, not a rulebook.</p></div>
+  </section>
+  <section id="workouts" class="section">
+   <div class="welcome"><div><h2>Movement & workouts 💪</h2><p>Build strength, balance, and energy at your own pace.</p></div></div>
+   <div class="card"><div class="cardhead"><h3>Simple weekly rhythm</h3><span class="tag">3 optional sessions</span></div><p class="hint">Try Monday, Wednesday, and Saturday, with easy movement or rest on other days. Sports, dancing, walking, biking, and playing all count.</p><div class="schedule-item"><div class="time">MON</div><div><strong>Workout A</strong><small>Gentle full-body basics</small></div></div><div class="schedule-item"><div class="time">WED</div><div><strong>Workout B</strong><small>Balance, legs, and core</small></div></div><div class="schedule-item"><div class="time">SAT</div><div><strong>Choose A or B</strong><small>Or do a fun activity instead</small></div></div></div>
+   <div class="card"><div class="cardhead"><h3>Beginner full-body session</h3><span class="tag">About 15–20 min</span></div><p class="hint">Warm up with 3–5 minutes of easy marching and arm circles. Move slowly and comfortably; take breaks whenever needed.</p><div id="workoutList"></div><div class="actions" style="margin-top:12px"><button class="btn" id="resetWorkout">Reset today's checklist</button></div></div>
+   <div class="card"><h3>Safety first 💙</h3><p class="hint">Start with one easy round; add a second only if it feels comfortable. Stop if anything hurts, or if you feel dizzy or unwell. No heavy weights or max-effort challenges needed. If you're new to exercise or have an injury or health concern, ask a trusted adult or healthcare professional to help you choose safe activities.</p></div>
+  </section>
+  <section id="clean" class="section">
+   <div class="welcome"><div><h2>Days Clean 🌱</h2><p>A private, optional tracker for a personal goal you chose.</p></div></div>
+   <div class="card">
+    <div class="cardhead"><h3>Your current count</h3><span class="tag">Saved on this device</span></div>
+    <div id="cleanBigCount" style="font-size:clamp(42px,8vw,64px);font-weight:750;line-height:1.1;margin:12px 0">Not started</div>
+    <p id="cleanSince" class="hint">The tracker is off until you choose to start it.</p>
+    <div class="actions" style="margin-top:16px"><label class="hint" for="cleanStartDate" style="align-self:center">Start date</label><input class="field" style="width:auto;min-width:150px;margin:0" type="date" id="cleanStartDate"><button class="btn primary" id="startClean">Start / update count</button><button class="btn" id="resetClean">Reset today</button></div>
+   </div>
+   <div class="card"><div class="cardhead"><h3>Milestones</h3><span class="hint">Celebrate progress at your own pace</span></div><div id="cleanMilestones"></div></div>
+   <div class="card"><div class="cardhead"><h3>Personal best</h3></div><p class="quote" style="font-size:25px" id="cleanBest">0 days</p><p class="hint">Your longest completed count before a reset. Starting again doesn't erase what you learned or the effort you made.</p></div>
+   <div class="card"><h3>A kind reminder 💙</h3><p class="hint">This is optional and private to this browser. It doesn't affect your XP, level, achievements, or worth. Masturbation is a normal part of puberty and isn't automatically unhealthy; use this tracker only if it supports a personal goal that feels right to you. If you choose to restart, there's no shame—just decide what feels helpful next.</p></div>
   </section>
   <section id="progress" class="section">
    <div class="welcome"><div><h2>Your progress ▦</h2><p>Notice the effort you're putting in, one day at a time.</p></div></div>
@@ -113,7 +135,7 @@ const defaultHabits=[
  {id:'prep',name:'Prepare for tomorrow',detail:'Bag, clothes, and a little tidy-up',icon:'🎒',category:'Routine'},
  {id:'winddown',name:'Wind down before bed',detail:'Choose a calm, screen-light activity',icon:'🌙',category:'Sleep'}
 ];
-const schedule=[
+const weekdaySchedule=[
  ['6:30 AM','Wake up','Make your bed, drink water'],
  ['6:40 AM','Get ready','Wash face, brush teeth, get dressed'],
  ['7:00 AM','Breakfast','Eat and get ready for the day'],
@@ -132,7 +154,32 @@ const schedule=[
  ['7:45 PM','Prepare tomorrow','Set out clothes and school things'],
  ['8:00 PM','Screen wind-down','Put away anything that keeps you up'],
  ['8:30 PM','Bedtime routine','Brush teeth, wash face, calm activity'],
- ['9:00 PM','Sleep','Aim for 8–10 hours at your age']
+ ['9:00 PM','Sleep','Aim for a good night of rest']
+];
+const weekendSchedule=[
+ ['8:00 AM','Wake up gently','Have a relaxed start and drink some water'],
+ ['8:30 AM','Breakfast','Eat a filling breakfast'],
+ ['9:00 AM','Get ready','Wash up and get dressed'],
+ ['9:30 AM','Fresh air or movement','Walk, bike, play, or stretch'],
+ ['10:30 AM','Hobbies and fun','Games, reading, art, music, or friends'],
+ ['12:00 PM','Lunch','Take a proper break to eat'],
+ ['1:00 PM','Chores or a small task','Help out, tidy up, or finish a little homework'],
+ ['2:00 PM','Free time','Enjoy something you like'],
+ ['4:00 PM','Optional workout','Try a short session or choose active play'],
+ ['5:00 PM','Relax and recharge','Rest, shower, or spend time with family'],
+ ['6:45 PM','Dinner','Eat and connect with family'],
+ ['7:30 PM','Evening fun','Hobbies, games, or a movie'],
+ ['8:00 PM','Wind down','Lower screen time and get ready for tomorrow'],
+ ['9:00 PM','Bedtime routine','Brush teeth and do something calming']
+];
+const workoutMoves=[
+ {id:'warmup',name:'Warm-up',detail:'3–5 minutes of easy marching and arm circles',icon:'🔥'},
+ {id:'squat',name:'Chair squats',detail:'6–8 slow reps; sit back toward a sturdy chair',icon:'🪑'},
+ {id:'wallpush',name:'Wall push-ups',detail:'6–8 gentle reps; keep your body in a straight line',icon:'🙌'},
+ {id:'bridge',name:'Glute bridges',detail:'6–8 reps; lift hips gently, then lower',icon:'🌉'},
+ {id:'birddog',name:'Bird-dog',detail:'4–6 slow reps per side; reach opposite arm and leg',icon:'🐦'},
+ {id:'march',name:'Easy march',detail:'1 minute at a comfortable pace',icon:'🚶'},
+ {id:'cooldown',name:'Cool down',detail:'2–3 minutes of easy walking and gentle stretches',icon:'🌿'}
 ];
 const quotes=[
 'Small steps still move you forward.','You are allowed to learn as you go.','A tough day does not cancel your progress.','You do not need to be perfect to be proud of yourself.','Take a breath. Choose the next helpful thing.','Rest is productive too.','Your progress belongs to you.','One kind choice toward yourself is a win.'
@@ -147,10 +194,16 @@ const badges=[
 ];
 function today(){let d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
-let state=Object.assign({xp:0,days:{},settings:{wake:'6:30 AM',bed:'9:00 PM',schoolStart:'8:00 AM',schoolEnd:'2:50 PM',pickup:'3:15 PM',home:'3:30 PM'},habits:defaultHabits},load());
+let state=Object.assign({xp:0,days:{},workoutDays:{},cleanTracker:{startDate:null,bestDays:0},settings:{wake:'6:30 AM',bed:'9:00 PM',schoolStart:'8:00 AM',schoolEnd:'2:50 PM',pickup:'3:15 PM',home:'3:30 PM'},habits:defaultHabits},load());
 if(!state.habits||!state.habits.length)state.habits=defaultHabits;
+if(!state.workoutDays)state.workoutDays={};
+if(!state.cleanTracker)state.cleanTracker={startDate:null,bestDays:0};
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function todayDone(){return state.days[today()]||[]}
+function dateDiffDays(start,end=today()){if(!start)return 0;let a=new Date(start+'T12:00:00'),b=new Date(end+'T12:00:00');return Math.max(0,Math.floor((b-a)/86400000))}
+function cleanDays(){return state.cleanTracker.startDate?dateDiffDays(state.cleanTracker.startDate):null}
+function cleanMilestoneHTML(){let n=cleanDays(),marks=[3,7,14,30,60,90];return marks.map(m=>`<div class="schedule-item"><div class="time">${m} DAYS</div><div><strong>${n!==null&&n>=m?'✓ Reached':'Ahead'}</strong><small>${n!==null&&n>=m?'Milestone reached':'A future checkpoint—no pressure'}</small></div></div>`).join('')}
+function renderClean(){let n=cleanDays(),started=n!==null;document.getElementById('cleanDashboard').textContent=started?`${n} day${n===1?'':'s'}`:'Not started';document.getElementById('cleanDashboardNote').textContent=started?`Counting from ${new Date(state.cleanTracker.startDate+'T12:00:00').toLocaleDateString()}.`:'An optional personal goal tracker. Start whenever you are ready.';document.getElementById('cleanBigCount').textContent=started?`${n} day${n===1?'':'s'}`:'Not started';document.getElementById('cleanSince').textContent=started?`Started ${new Date(state.cleanTracker.startDate+'T12:00:00').toLocaleDateString()}`:'Choose a start date below when you want to begin.';document.getElementById('cleanBest').textContent=`${state.cleanTracker.bestDays||0} day${(state.cleanTracker.bestDays||0)===1?'':'s'}`;document.getElementById('cleanMilestones').innerHTML=cleanMilestoneHTML();document.getElementById('cleanStartDate').value=state.cleanTracker.startDate||today();}
 function totalDone(){return Object.values(state.days).reduce((n,a)=>n+a.length,0)}
 function activeDates(){return Object.keys(state.days).filter(k=>(state.days[k]||[]).length).sort()}
 function streak(){let n=0,d=new Date();if(!(state.days[today()]||[]).length)d.setDate(d.getDate()-1);while(true){let k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');if((state.days[k]||[]).length){n++;d.setDate(d.getDate()-1)}else break}return n}
@@ -159,7 +212,8 @@ function level(){return Math.floor(state.xp/100)+1}
 function earned(){return badges.filter(b=>b.test({totalDone:totalDone(),bestStreak:bestStreak(),xp:state.xp}))}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function habitHTML(h){let done=todayDone().includes(h.id);return `<div class="habit ${done?'done':''}"><button class="check" data-habit="${esc(h.id)}" aria-label="Toggle ${esc(h.name)}">${done?'✓':''}</button><div class="grow"><div class="hname">${h.icon||'✓'} ${esc(h.name)}</div><div class="hmeta">${esc(h.detail||h.category||'Daily habit')}</div></div><span class="tag">+10 XP</span></div>`}
-function scheduleHTML(limit){return schedule.slice(0,limit||schedule.length).map(x=>`<div class="schedule-item"><div class="time">${x[0]}</div><div><strong>${x[1]}</strong><small>${x[2]}</small></div></div>`).join('')}
+function scheduleHTML(items,limit){return items.slice(0,limit||items.length).map(x=>`<div class="schedule-item"><div class="time">${x[0]}</div><div><strong>${x[1]}</strong><small>${x[2]}</small></div></div>`).join('')}
+function workoutHTML(m){let done=(state.workoutDays[today()]||[]).includes(m.id);return `<div class="habit ${done?'done':''}"><button class="check" data-workout="${m.id}" aria-label="Toggle ${m.name}">${done?'✓':''}</button><div class="grow"><div class="hname">${m.icon} ${m.name}</div><div class="hmeta">${m.detail}</div></div></div>`}
 function render(){
  let d=todayDone(),n=state.habits.length,p=n?Math.round(d.length/n*100):0,l=level(),into=state.xp%100;
  document.getElementById('todayPill').textContent=new Date().toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
@@ -172,25 +226,29 @@ function render(){
  document.getElementById('dailyCount').textContent=d.length+' habits completed';document.getElementById('dailyPct').textContent=p+'%';document.getElementById('dailyBar').style.width=p+'%';
  document.getElementById('habitList').innerHTML=state.habits.slice(0,6).map(habitHTML).join('')+(n>6?`<button class="btn" data-go="habits" style="margin-top:12px">See all habits</button>`:'');
  document.getElementById('allHabitList').innerHTML=state.habits.map(habitHTML).join('');
- document.getElementById('miniSchedule').innerHTML=scheduleHTML(6);document.getElementById('fullSchedule').innerHTML=scheduleHTML();
+ let weekend=[0,6].includes(new Date().getDay());let todayPlan=weekend?weekendSchedule:weekdaySchedule;document.getElementById('miniSchedule').innerHTML=scheduleHTML(todayPlan,6);document.getElementById('fullSchedule').innerHTML=scheduleHTML(weekdaySchedule);document.getElementById('weekendSchedule').innerHTML=scheduleHTML(weekendSchedule);document.getElementById('workoutList').innerHTML=workoutMoves.map(workoutHTML).join('');
  document.getElementById('levelTag').textContent='Level '+l;document.getElementById('xpToNext').textContent=into+' / 100 XP';document.getElementById('nextLevel').textContent='Next: Level '+(l+1);document.getElementById('levelBar').style.width=into+'%';
  document.getElementById('bestStreak').textContent=bestStreak();document.getElementById('totalDone').textContent=totalDone();document.getElementById('activeDays').textContent=activeDates().length;
  let earnedBadges=earned();document.getElementById('badgeCount').textContent=earnedBadges.length+' / '+badges.length+' unlocked';
  document.getElementById('achievementList').innerHTML=badges.map(b=>{let ok=earnedBadges.includes(b);return `<div class="achievement ${ok?'':'locked'}"><div class="medal">${b.icon}</div><div class="grow"><strong>${b.name}</strong><div class="hint">${b.desc}</div></div><span>${ok?'✓':'🔒'}</span></div>`}).join('');
  let next=badges.find(b=>!earnedBadges.includes(b));document.getElementById('nextAchievement').innerHTML=next?`<div class="achievement"><div class="medal">${next.icon}</div><div><strong>${next.name}</strong><div class="hint">${next.desc}</div></div></div>`:'<p class="hint">You unlocked every badge. Amazing effort!</p>';
  let cal=document.getElementById('calendar'),names=['S','M','T','W','T','F','S'];cal.innerHTML=names.map(x=>`<div class="dayname">${x}</div>`).join('');let now=new Date();for(let i=27;i>=0;i--){let x=new Date(now);x.setDate(now.getDate()-i);let k=x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0'),isToday=k===today(),doneDay=(state.days[k]||[]).length>0;cal.innerHTML+=`<div class="day ${isToday?'today':''} ${doneDay?'done':''}"><b>${x.getDate()}</b>${doneDay?'✓':' '}</div>`}
+ renderClean();
  for(let id of ['wake','bed','schoolStart','schoolEnd','pickup','home'])document.getElementById(id).value=state.settings[id]||'';
 }
 function toast(msg){let el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.appendChild(el);setTimeout(()=>el.remove(),2200)}
 function toggleHabit(id){let a=todayDone(),was=a.includes(id);if(was){a=a.filter(x=>x!==id);state.xp=Math.max(0,state.xp-10)}else{a.push(id);state.xp+=10}state.days[today()]=a;save();render();toast(was?'Check-in updated.':'Nice work! +10 XP ✨')}
-document.addEventListener('click',e=>{let h=e.target.closest('[data-habit]');if(h)toggleHabit(h.dataset.habit);let go=e.target.closest('[data-go]');if(go)showTab(go.dataset.go);let nav=e.target.closest('[data-tab]');if(nav)showTab(nav.dataset.tab)});
+document.addEventListener('click',e=>{let w=e.target.closest('[data-workout]');if(w){let a=state.workoutDays[today()]||[];state.workoutDays[today()]=a.includes(w.dataset.workout)?a.filter(x=>x!==w.dataset.workout):[...a,w.dataset.workout];save();render();return;}let h=e.target.closest('[data-habit]');if(h)toggleHabit(h.dataset.habit);let go=e.target.closest('[data-go]');if(go)showTab(go.dataset.go);let nav=e.target.closest('[data-tab]');if(nav)showTab(nav.dataset.tab)});
 function showTab(id){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'})}
+document.getElementById('resetWorkout').onclick=()=>{state.workoutDays[today()]=[];save();render();toast('Workout checklist reset.');};
+document.getElementById('startClean').onclick=()=>{let v=document.getElementById('cleanStartDate').value;if(!v){toast('Choose a start date first.');return;}if(v>today()){toast('Choose today or an earlier date.');return;}if(state.cleanTracker.startDate){let current=cleanDays();state.cleanTracker.bestDays=Math.max(state.cleanTracker.bestDays||0,current||0);}state.cleanTracker.startDate=v;save();render();toast('Your personal tracker is updated.');};
+document.getElementById('resetClean').onclick=()=>{if(!state.cleanTracker.startDate){toast('Start the tracker whenever you are ready.');return;}if(confirm('Reset your personal count to today? Your previous best will be kept.')){state.cleanTracker.bestDays=Math.max(state.cleanTracker.bestDays||0,cleanDays()||0);state.cleanTracker.startDate=today();save();render();toast('Count reset. No shame—one step at a time.');}};
 document.getElementById('newQuote').onclick=()=>{let q=quotes[Math.floor(Math.random()*quotes.length)];document.getElementById('quote').textContent=q};
 document.getElementById('saveSettings').onclick=()=>{for(let id of ['wake','bed','schoolStart','schoolEnd','pickup','home'])state.settings[id]=document.getElementById(id).value.trim();save();toast('Schedule saved!');};
 document.getElementById('exportData').onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='level-up-backup.json';a.click();URL.revokeObjectURL(a.href)};
 document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();
-document.getElementById('importFile').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let v=JSON.parse(r.result);if(!v.days||!v.habits)throw Error();state=v;save();render();toast('Backup imported!')}catch(_){toast('That backup file could not be read.')}};r.readAsText(f)};
-document.getElementById('resetData').onclick=()=>{if(confirm('Erase all LEVEL UP progress saved in this browser? This cannot be undone unless you exported a backup.')){localStorage.removeItem(KEY);state={xp:0,days:{},settings:{wake:'6:30 AM',bed:'9:00 PM',schoolStart:'8:00 AM',schoolEnd:'2:50 PM',pickup:'3:15 PM',home:'3:30 PM'},habits:defaultHabits};render();toast('Progress reset. Fresh start!')}};
+document.getElementById('importFile').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let v=JSON.parse(r.result);if(!v.days||!v.habits)throw Error();state=v;if(!state.workoutDays)state.workoutDays={};if(!state.cleanTracker)state.cleanTracker={startDate:null,bestDays:0};save();render();toast('Backup imported!')}catch(_){toast('That backup file could not be read.')}};r.readAsText(f)};
+document.getElementById('resetData').onclick=()=>{if(confirm('Erase all LEVEL UP progress saved in this browser? This cannot be undone unless you exported a backup.')){localStorage.removeItem(KEY);state={xp:0,days:{},workoutDays:{},cleanTracker:{startDate:null,bestDays:0},settings:{wake:'6:30 AM',bed:'9:00 PM',schoolStart:'8:00 AM',schoolEnd:'2:50 PM',pickup:'3:15 PM',home:'3:30 PM'},habits:defaultHabits};render();toast('Progress reset. Fresh start!')}};
 render();
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
   window.addEventListener('load', () => {
